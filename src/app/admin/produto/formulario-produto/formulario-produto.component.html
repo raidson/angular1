@@ -1,0 +1,101 @@
+<form [formGroup]="produtoForm" (ngSubmit)="salvarProduto(produtoForm);">
+  <div class="col-md-12 mt-3">
+    <div class="row">
+      <div class="col-md-6" *ngIf="produto.id != null">
+        <div class="form-group">
+          <label>Identificador:</label>
+          <input type="text" class="form-control" id="id" formControlName="id" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome:</label>
+          <input type="text" class="form-control" formControlName="nome" id="nome" autocomplete="off">
+
+          <div [hidden]="produtoForm.get('nome')?.valid || produtoForm.get('nome')?.pristine">
+            <span class="text-danger">Campo de preenchimento obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Preço:</label>
+          <input type="number" class="form-control" formControlName="preco" id="preco" autocomplete="off">
+
+          <div [hidden]="produtoForm.get('preco')?.valid || produtoForm.get('preco')?.pristine">
+            <span class="text-danger">Campo de preenchimento obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Categoria:</label>
+          <select [compareWith]="compararCategoria" class="form-control" id="categoria" formControlName="categoria">
+            <option [ngValue]="null">Selecione</option>
+            <option *ngFor="let categoria of categorias;" [ngValue]="categoria">
+              {{ categoria.nome }}
+            </option>
+          </select>
+
+          <div [hidden]="produtoForm.get('categoria').valid || produtoForm.get('categoria').pristine">
+            <span class="text-danger">Campo de preenchimento obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Descrição:</label>
+          <textarea class="form-control" formControlName="descricao" id="descricao" autocomplete="off"></textarea>
+
+          <div [hidden]="produtoForm.get('descricao')?.valid || produtoForm.get('descricao')?.pristine">
+            <span class="text-danger">Campo de preenchimento obrigatório.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-2">
+        <button class="btn btn-success" (click)="adicionarItem()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Adicionar Categoria
+        </button>
+      </div>
+
+      <div class="col-md-12" formArrayName="itens">
+        <div *ngFor="let item of produtoForm.get('itens').value; let i = index;" [formGroupName]="i">
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Categoria:</label>
+                <select class="form-control" id="categoria" formControlName="categoria">
+                  <option *ngFor="let categoria of categorias; let a = index;" [ngValue]="categoria">
+                    {{ categoria.nome }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <button class="btn btn-danger botao-remover" (click)="removerItem(i)"
+              [hidden]="produtoForm.get('itens').value.length < 2">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Remover Categoria
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-danger" routerLink="/admin/produto">
+      Voltar
+    </button>
+
+    <button type="submit" class="btn btn-success pull-right" [disabled]="! produtoForm.valid">
+      Salvar
+    </button>
+  </div>
+</form>

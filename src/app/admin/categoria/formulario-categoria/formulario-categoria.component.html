@@ -1,0 +1,29 @@
+<form [formGroup]="categoriaForm" (ngSubmit)="salvarCategoria(categoriaForm);">
+  <div class="col-md-12 mt-3">
+    <div class="row">
+      <div class="col-md-6" *ngIf="categoria.id != 0">
+        <div class="form-group">
+          <label>Identificador:</label>
+          <input type="text" class="form-control" id="id" formControlName="id" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome:</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome" autocomplete="off">
+
+          <div [hidden]="categoriaForm.get('nome')?.valid || categoriaForm.get('nome')?.pristine">
+            <span class="text-danger">Campo de preenchimento obrigatório.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-danger" routerLink="/admin/categoria">
+      Voltar
+    </button>
+
+    <button type="submit" class="btn btn-success pull-right" [disabled]="! categoriaForm?.valid">
+      Salvar
+    </button>
+  </div>
+</form>

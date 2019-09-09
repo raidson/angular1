@@ -1,0 +1,31 @@
+<div class="col-md-12">
+  <button class="btn btn-success mb-2 mt-2" routerLink="/admin/produto/inserir">
+    <i class="fa fa-plus"></i>
+    Cadatrar
+  </button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th title="Identificador da categoria.">#</th>
+        <th title="Nome da categoria.">Produto</th>
+        <th title="Nome da categoria.">Preço</th>
+        <th title="Nome da categoria.">Categoria</th>
+        <th title="Ações">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos; let i = index">
+        <th scope="row">{{ produto.id }}</th>
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.preco }}</td>
+        <td>{{ produto.categoria.nome }}</td>
+        <td>
+          <i class="fa fa-pencil" aria-hidden="true" [routerLink]="['/admin/produto/atualizar', produto.id]"></i>
+          <i class="fa fa-eye" aria-hidden="true" [routerLink]="['/admin/produto/visualizar', produto.id]"></i>
+          <i class="fa fa-trash" aria-hidden="true" (click)="abrirModal(produto.id, i)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

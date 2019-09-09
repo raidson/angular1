@@ -1,0 +1,33 @@
+<div class="row pt-2">
+  <div class="col-md-4">
+    <div class="small-box azul">
+      <div class="inner">
+        <h3>Produtos</h3>
+        <p>Registros: {{ dashboard.nuProdutos }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa fa-inbox"></i>
+      </div>
+      <span (click)="redirecionarProduto()" class="small-box-footer">
+        Ver mais
+        <i class="fa fa-arrow-circle-right"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="small-box vermelho">
+      <div class="inner">
+        <h3>Categorias</h3>
+        <p>Registros: {{ dashboard.nuCategorias }}</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-bars"></i>
+      </div>
+      <span (click)="redirecionarCategoria()" routerLink="/admin/categoria" class="small-box-footer">
+        Ver mais
+        <i class="fa fa-arrow-circle-right"></i>
+      </span>
+    </div>
+  </div>
+</div>
