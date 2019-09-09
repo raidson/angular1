@@ -1,31 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from './core/modal/modal.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeModule } from '../app/home/home.module';
-import { AdminModule } from '../app/admin/admin.module';
-import { AcessoModule } from '../app/acesso/acesso.module';
-import { AdminRoutingModule } from './admin/admin-routing.module';
-import { ModalValidacaoComponent } from './core/modal/modal-validacao/modal-validacao.component';
+import { SimpleSidenavModule } from 'simple-sidenav';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
-    NgbModule,
-    HomeModule,
-    AdminModule,
-    ModalModule,
-    AcessoModule,
-    ToastrModule,
     BrowserModule,
-    AdminRoutingModule,
-    NgbModule.forRoot()
+    AppRoutingModule,
+    SimpleSidenavModule,
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [ModalValidacaoComponent]
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
